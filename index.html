@@ -1,32 +1,44 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>تفعيل البصمة</title>
 </head>
 <body style="font-family: Tahoma; text-align: center; margin-top: 100px;">
 
   <h2>مرحبا 👋</h2>
   <p id="message" style="color: #c00; font-size: 18px;">
-    التجربة لم تحقق منهويتك، لا تغلق الصفحة حتى يتم التفعيل بالبصمة.
+    الرجاء تفعيل البصمة باستخدام جهازك
   </p>
 
-  <button onclick="verifyFingerprint()" style="padding: 10px 20px; font-size: 18px;">
-    تفعيل باستخدام البصمة
+  <button onclick="requestFingerprint()" style="padding: 10px 20px; font-size: 18px;">
+    تفعيل باستخدام بصمة الجوال
   </button>
 
   <script>
-    async function verifyFingerprint() {
+    async function requestFingerprint() {
       try {
+        const available = await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable();
+        if (!available) {
+          document.getElementById("message").innerText = "🔒 جهازك لا يدعم التحقق بالبصمة.";
+          return;
+        }
+
+        // فقط طلب تحقق وليس تسجيل مفتاح
+        const challenge = new Uint8Array(32);
+        window.crypto.getRandomValues(challenge);
+
         const assertion = await navigator.credentials.get({
           publicKey: {
-            challenge: new Uint8Array([1, 2, 3, 4, 5, 6]),
+            challenge: challenge,
             timeout: 60000,
-            userVerification: 'preferred'
+            userVerification: 'required',
+            allowCredentials: []
           }
         });
 
-        const res = await fetch("https://osama88.app.n8n.cloud/webhook/fingerprint-test", {
+        // إذا نجحت البصمة، أرسل إلى n8n
+        await fetch("https://osama88.app.n8n.cloud/webhook/fingerprint-test", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -36,16 +48,15 @@
           })
         });
 
-        document.getElementById("message").innerText = "✅ تم التحقق بنجاح، شكراً لك!";
+        document.getElementById("message").innerText = "✅ تم التحقق بنجاح!";
         document.getElementById("message").style.color = "green";
 
       } catch (err) {
-        console.error("Fingerprint failed:", err);
-        document.getElementById("message").innerText = "فشل التحقق، الرجاء المحاولة مرة أخرى.";
+        console.error("خطأ في التحقق:", err);
+        document.getElementById("message").innerText = "❌ فشل التحقق بالبصمة، حاول مجددًا.";
         document.getElementById("message").style.color = "#c00";
       }
     }
   </script>
-
 </body>
 </html>
